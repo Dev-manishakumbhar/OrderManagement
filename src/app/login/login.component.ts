@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
     var psw = this.formData.password;
   
     
-    if(name!="manisha" && psw!="Rwyh9b@20"){
+    if(name!="order" && psw!="order"){
      
      alert("Plz Enter valid username and password");
 

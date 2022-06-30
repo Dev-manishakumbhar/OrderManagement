@@ -1,0 +1,42 @@
+
+<nav class="navbar navbar-dark default-color" style="background-color: rgb(184, 19, 46);">
+    
+<button type="button" class="btn btn-primary" (click)="open({}, false)">New Order</button>
+</nav>
+
+      
+<table class="table table-striped">
+    <thead>
+      <tr >
+        <th scope="col">Order Id</th>
+        <th scope="col">Buyer Name</th>
+        <th scope="col">Phone No.</th>
+        <th scope="col">Address</th>
+        <th scope="col">Due Date</th>
+        <th scope="col">Order Total</th>
+      </tr>
+    </thead>
+    
+    <tbody>
+      
+      <tr  class=" table-secondary" *ngFor="let row of orders">
+        
+        <td>{{row.id}}</td>
+        <td>{{row.custName}}</td>
+        <td>{{row.phone}}</td>
+        
+        <td>{{row.address}}</td>
+        <td>{{row.dueDate}}</td>
+        <td>{{row.orderTotal}}</td>
+        <!-- <td>@mdo</td> -->
+        <td><button class="btn btn-primary btn-small" type="button" (click)="updateData(row.id)"(click)="open(this.row, true)" >Edit</button></td>
+        
+        
+        <td><button class="btn btn-danger" type="button" (click)="deleteItem(this.row)"  ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+            <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+          </svg></button></td>
+      </tr>
+     
+     
+    </tbody>
+  </table> 

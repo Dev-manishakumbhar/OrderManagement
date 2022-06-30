@@ -28,10 +28,13 @@ To login this app use crdentials  username : order  and password : order
 Application has following features
  - Login form validations
  - Once login it displays order grid
- - It allows you to a new order
+ - It allows you to add a new order
  - Edit existing order
  - Delete a order 
  - It provides mobile first approch and inspired by RWD
+
+## Pending
+ - Remember me not working on reload.
 
 ## Further help
 

@@ -3,13 +3,10 @@
     {
       "custName": "MANISHA KUMBHAR",
       "phone": "09284486520",
-      "address": "09284486520",
+      "address": "pune",
+      "orderTotal": "200",
+      "dueDate": "2022-07-14",
       "id": "1"
-    },
-    {
-      "custName": "Shankar Virbhadra Kumbhar",
-      "phone": "+919860507082",
-      "id": "3"
     }
   ]
 }

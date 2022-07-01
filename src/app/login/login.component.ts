@@ -10,6 +10,10 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   formData:any={}; 
+  u:any;
+  rememberMe!:boolean;
+  p:any;
+
   constructor(private router:Router) { }
 
   ngOnInit(): void {
@@ -17,16 +21,19 @@ export class LoginComponent implements OnInit {
   }
   
 
-  sendData(username:any,psw1:any){
+  sendData(username:any,psw1:any, rememberMe: boolean){
     console.log("login");
-    var name=this.formData.username;
-    var psw = this.formData.password;
-  
+    const userName=this.formData.username;
+    const password = this.formData.password;
     
-    if(name!="order" && psw!="order"){
-     
-     alert("Plz Enter valid username and password");
+    if(rememberMe){
+      this.remeberMe(userName, password);
+    }
+      
 
+
+    if(userName!="order" && password!="order"){
+     alert("Username or password is incorrect");
     }
     else{
       this.router.navigateByUrl("/order")
@@ -34,9 +41,26 @@ export class LoginComponent implements OnInit {
     
   }
   
+  
+
+ remeberMe(userName:any, password:any) {
+  let credentials ={
+    'userName' : userName,
+    'password' : password,
+    'time' : new Date().getTime()
+  };
+  localStorage['credentials'] = JSON.stringify(credentials);
+}
+
+loadStuff() {
+  return JSON.parse(localStorage.getItem("credentials") || '');
+}
+
   setCookie(){
-    var user=document.getElementById('userName')?.nodeValue
-    var psw=document.getElementById('password')?.nodeValue
+    var user=document.getElementById('userName')
+    var psw=document.getElementById('password')
+    
+
     document.cookie="username="+user+";path=http://localhost:4200/";
     document.cookie="passw="+psw+";path=http://localhost:4200/";
    
@@ -46,10 +70,12 @@ export class LoginComponent implements OnInit {
   {
   
     console.log(document.cookie);
-   var u= this.getCookie("username");
-   var p= this.getCookie("passw");
-   document.getElementById('userName')
-  document.getElementById('password')
+   var u= this.getCookie("username")
+   var p= this.getCookie("passw")
+  document.getElementById('userName')
+    document.getElementById('password')
+    // sessionStorage.getItem("custName")
+    // sessionStorage.getItem("password")
   }
 
   getCookie(data:any){
@@ -65,7 +91,7 @@ export class LoginComponent implements OnInit {
           return c.substring(name.length,c.length);
         }
       }
-      return  ""
+      return ""
   }
 
 

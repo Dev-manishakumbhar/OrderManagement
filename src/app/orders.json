@@ -1,11 +1,15 @@
 {
   "orders": [
     {
-      "custName": "manisha",
+      "custName": "MANISHA KUMBHAR",
       "phone": "09284486520",
-      "address": "abc",
-      "orderTotal": "1",
-      "id": 1
+      "address": "09284486520",
+      "id": "1"
+    },
+    {
+      "custName": "Shankar Virbhadra Kumbhar",
+      "phone": "+919860507082",
+      "id": "3"
     }
   ]
 }

@@ -16,24 +16,22 @@ import { OrderService } from '../order.service';
   @Input() order?: Order;
   @Input() isEdit?: Boolean;
   formData:any={}; 
+  form!:FormGroup;
     constructor(public activeModal: NgbActiveModal,private orderservice:OrderService) {
      // console.log(this.ngbModal.activeInstances);
       this.formData.custName = this.order?.custName;
      }
      ngOnInit(): void {
-      
+      // this.orderservice.getOrder();
      }
   
     onSubmit() {
-   
-      // this.order = this.orderForm.value;
-      console.log(this.formData);
-      this.orderservice.addPost( this.formData)
-     
+      this.orderservice.addPost( this.formData) 
+    }
 
-      
-    
-}
+    updateOrder(){
+      this.orderservice.update(this.formData.id,this.formData);
+    }
 
 
   }

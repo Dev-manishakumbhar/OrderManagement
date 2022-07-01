@@ -1,5 +1,5 @@
 
-{{this.order?.id | json}}
+<!-- {{this.order?.id | json}} -->
 <div class="modal-header">
 	<h4 class="modal-title">Order Details</h4>
 	<button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
@@ -9,7 +9,7 @@
 
 
 <div class="modal-body">
-	<form class=" needs-validation" novalidate>
+	<!-- <form class=" needs-validation" novalidate [formGroup]="form"> -->
 	<div class="card order-border">
 	
 
@@ -17,7 +17,7 @@
 		  <div class="row">
 			<div class="col">
 				<label for="">Name</label>
-				<input type="text" class="form-control" placeholder="Customer Name" id="userName" name="userName" [(ngModel)]="formData.custName" aria-label="custName"  #custName="ngModel" required >
+				<input type="text" class="form-control" placeholder="Customer Name" id="custName" name="custName" [(ngModel)]="formData.custName" aria-label="custName"  #custName="ngModel" required >
 				<div *ngIf="custName.invalid && (custName.dirty || custName.touched)"
 				class="alert">
 			
@@ -56,7 +56,7 @@
 			</div></div>
 			<div class="col">
 				<label for="">Due Date</label>
-			  <input type="date" class="form-control" #dueDate="ngModel" id="userName" name="userName" [(ngModel)]="formData.dueDate" placeholder="DueDate" aria-label="dueDate" required>
+			  <input type="date" class="form-control" #dueDate="ngModel" id="dueDate" name="dueDate" [(ngModel)]="formData.dueDate" placeholder="DueDate" aria-label="dueDate" required>
 			  <div *ngIf="dueDate.invalid && (dueDate.dirty || dueDate.touched)"
 			  class="alert"> 
 			  <div *ngIf="dueDate.errors?.['required']">
@@ -68,8 +68,14 @@
 			</div><br>
 			<div class="row">
 				<div class="col">
-					<input type="text" class="form-control" #id="ngModel" id="id" name="id" [(ngModel)]="formData.id" placeholder="Id" aria-label="id" required>
-				 
+					<label for="">Order ID</label>
+					<div *ngIf="isEdit">
+						<input readonly type="text" class="form-control" #id="ngModel" id="id" name="id" [(ngModel)]="formData.id" placeholder="Id" aria-label="id" required>
+					</div>
+					<div *ngIf="!isEdit">
+						<input type="text" class="form-control" #id="ngModel" id="id" name="id" [(ngModel)]="formData.id" placeholder="Id" aria-label="id" required>
+					</div>
+					
 				</div>
 				<div class="col">
 					
@@ -79,7 +85,7 @@
 			<div class="row">
 				<div class="col">
 					<label for="">Address</label>
-				  <input type="text" class="form-control"  id="address" name="address" id="userName" name="userName" #address="ngModel" [(ngModel)]="formData.address" placeholder="Address" aria-label="address" required>
+				  <input type="text" class="form-control"  id="address" name="address" id="address" name="address" #address="ngModel" [(ngModel)]="formData.address" placeholder="Address" aria-label="address" required>
 				  <div *ngIf="address.invalid && (address.dirty || address.touched)"
 			  class="alert">
 				  <div *ngIf="address.errors?.['required']">
@@ -92,9 +98,10 @@
 		  </div>
 	</div>
 </div>
-</form>
 
-<div class="modal-footer">
-	<button   class="btn btn-primary  btn-block" type="submit" (click)="onSubmit()" (click)="activeModal.close('Close click') ">{{this.isEdit ? 'Update' : 'Save'}}</button>
+
+<div class="modal-footer" >
+	<button *ngIf="!this.isEdit"  class="btn btn-primary  btn-block" type="submit" (click)="onSubmit()" (click)="activeModal.close('Close click') ">Save</button>
+	<button  *ngIf="this.isEdit"  class="btn btn-primary  btn-block" type="submit" (click)="updateOrder()" (click)="activeModal.close('Close click') ">{{this.isEdit ? 'Update' : 'Save'}}</button>
 </div>
 

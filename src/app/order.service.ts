@@ -1,7 +1,5 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-// import { Observable } from 'rxjs';
-// import { Order } from './order';
 
 @Injectable({
   providedIn: 'root'
@@ -25,8 +23,12 @@ export class OrderService {
   });
 }
 update(id:any,postData:object){
+  const headers = new HttpHeaders()
+  .set('content-type', 'application/json')
+  .set('Access-Control-Allow-Origin', '*');
+  const headerss = { 'content-type': 'application/json'}  
   let endPoints = `/posts/${id}`
-   return this.http.put("http://localhost:3000/orders" + endPoints, postData)
+   return this.http.put("http://localhost:3000/orders/"+id , JSON.stringify(postData),{ 'headers': headers });
 }
 
 getOrderById(id:number){

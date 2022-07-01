@@ -30,6 +30,7 @@ export class OrderDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+   
     this.orderservice.getOrder().subscribe(
       (resp:any)=>{
         console.log(resp);
@@ -51,7 +52,7 @@ export class OrderDetailsComponent implements OnInit {
       (order:Order)=>{
         this.editOrder(order)
       }
-    )
+    ) 
   }
   editOrder(order:Order){
     this.orderForm.patchValue({
@@ -63,11 +64,16 @@ export class OrderDetailsComponent implements OnInit {
     })
   }
 
-  open(order: Order, isEdit: boolean) {
+  open(order: Order, isEdit: boolean) 
+  {
+    
     const modalRef = this.modalService.open(OrderModalComponent);
     modalRef.componentInstance.order = order;
     modalRef.componentInstance.isEdit = isEdit;
     if(isEdit){
+     
+      // console.log(order.custName);
+      
       modalRef.componentInstance.formData = {
         'custName' : order.custName,
         'phone':order.phone,
@@ -76,18 +82,23 @@ export class OrderDetailsComponent implements OnInit {
         'id':order.id,
         'dueDate':order.dueDate
       }
+    
     }
+  
     
   }
 
   updateData(obj:Order){
     // console.log("update");
+    
     this.route.navigate(['/modal',obj.id])
     this.orderservice.update(obj.id,obj).subscribe(
       resp=>{
+        // if(obj.id==this.order?.id){
         console.log(resp);
-        this.updateOrder();
-      }
+        // this.updateOrder();
+      } 
+      // }
     )
    }
 
